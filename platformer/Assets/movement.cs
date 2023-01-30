@@ -15,9 +15,23 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.Space) && fuel >0){
-            fuel -= Time.fixedDeltaTime;
-            gameObject.GetComponent<Rigidbody>().AddForce(5 * transform.forward, ForceMode.Impulse);
+        if (fuel >0){
+            if(Input.GetKey(KeyCode.Space)){
+                fuel -= Time.fixedDeltaTime;
+                gameObject.GetComponent<Rigidbody>().AddForce(2 * transform.forward, ForceMode.Impulse);
+            }
+            if (Input.GetKey(KeyCode.W)){
+                fuel -= Time.fixedDeltaTime;
+                gameObject.GetComponent<Rigidbody>().AddForce(2 * -transform.up, ForceMode.Impulse);
+            }
+            if (Input.GetKey(KeyCode.A)){
+                fuel -= Time.fixedDeltaTime/2;
+                gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(0,-3,0));
+            }
+            if (Input.GetKey(KeyCode.D)){
+                fuel -= Time.fixedDeltaTime/2;
+                gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(0,3,0));
+            }
         }
     }
 }
