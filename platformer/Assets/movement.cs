@@ -17,34 +17,42 @@ public class movement : MonoBehaviour
         right = gameObject.transform.GetChild(3).gameObject.GetComponent<ParticleSystem>();
         up = gameObject.transform.GetChild(4).gameObject.GetComponent<ParticleSystem>();
         foraward = gameObject.transform.GetChild(5).gameObject.GetComponent<ParticleSystem>();
-        Debug.Log(left.gameObject.name);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (fuel >0){
-            if(Input.GetKey(KeyCode.Space)){
+            if(Input.GetKey(KeyCode.Space) && fuel >0){
                 fuel -= Time.fixedDeltaTime;
                 gameObject.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Impulse);
-                up.Play();
-            }
-            if (Input.GetKey(KeyCode.W)){
-                fuel -= Time.fixedDeltaTime;
-                gameObject.GetComponent<Rigidbody>().AddForce(-transform.up, ForceMode.Impulse);
                 foraward.Play();
             }
-            if (Input.GetKey(KeyCode.A)){
+            else {
+                foraward.Stop();
+            }
+            if (Input.GetKey(KeyCode.W) && fuel >0 ){
+                fuel -= Time.fixedDeltaTime;
+                gameObject.GetComponent<Rigidbody>().AddForce(-transform.up, ForceMode.Impulse);
+                up.Play();
+            }
+            else {
+                up.Stop();
+            }
+            if (Input.GetKey(KeyCode.A) && fuel >0){
                 fuel -= Time.fixedDeltaTime/2;
                 gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(0,-2,0));
                 right.Play();
             }
-            if (Input.GetKey(KeyCode.D)){
+            else {
+                right.Stop();
+            }
+            if (Input.GetKey(KeyCode.D) && fuel >0){
                 fuel -= Time.fixedDeltaTime/2;
                 gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(0,2,0));
                 left.Play();
             }
-
-        }
+            else {
+                left.Stop();
+            }
     }
 }
