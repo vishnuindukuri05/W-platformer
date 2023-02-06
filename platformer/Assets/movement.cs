@@ -62,4 +62,11 @@ public class movement : MonoBehaviour
     private void OnGUI() {
         GUI.Label(new Rect(175, 25, 500, 100), "Fuel left");
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.name.ToLower().Contains("gas")){
+            fuel = 10;
+            Destroy(other.gameObject);
+        }
+    }
 }
