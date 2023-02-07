@@ -11,7 +11,10 @@ public class movement : MonoBehaviour
     ParticleSystem right;
     ParticleSystem up;
     ParticleSystem foraward;
+    ParticleSystem super;
     [SerializeField] Slider fuelbar;
+    float boosttime;
+    bool boosting;
     void Start()
     {
         fuel = 10;
@@ -19,7 +22,12 @@ public class movement : MonoBehaviour
         right = gameObject.transform.GetChild(3).gameObject.GetComponent<ParticleSystem>();
         up = gameObject.transform.GetChild(4).gameObject.GetComponent<ParticleSystem>();
         foraward = gameObject.transform.GetChild(5).gameObject.GetComponent<ParticleSystem>();
+        super = gameObject.transform.GetChild(6).gameObject.GetComponent<ParticleSystem>();
+        super.Stop();
         Physics.gravity = new Vector3(0, -0.5f, 0);
+        this.gameObject.GetComponent<AudioSource>().Play(0);
+        boosttime = 2;
+        boosting = false;
     }
 
     // Update is called once per frame
@@ -56,6 +64,27 @@ public class movement : MonoBehaviour
             }
             else {
                 left.Stop();
+            }
+            if (((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))) && fuel > 0){
+                if (!this.gameObject.GetComponent<AudioSource>().isPlaying){
+                    this.gameObject.GetComponent<AudioSource>().Play();
+                }
+            }
+            else {
+                this.gameObject.GetComponent<AudioSource>().Pause();
+            }
+            if (Input.GetKey(KeyCode.LeftShift) && fuel >=2.5 && !boosting){
+                fuel -= 2.5f;
+                boosting = true;
+            }
+            if (boosting){
+                boosttime -= Time.fixedDeltaTime;
+                gameObject.GetComponent<Rigidbody>().AddForce(-transform.up, ForceMode.Impulse);
+                super.Play();
+            }
+            if (boosttime <= 0){
+                boosting = false;
+                boosttime = 2f;
             }
             fuelbar.value = fuel;
     }
