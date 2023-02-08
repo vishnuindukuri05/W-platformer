@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -3530742523525358208}
   - component: {fileID: 1866539622656527326}
   - component: {fileID: 7753343191309683302}
+  - component: {fileID: 7202094101470782050}
   m_Layer: 0
   m_Name: Kim
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 124
   m_CollisionDetection: 0
 --- !u!64 &1866539622656527326
 MeshCollider:
@@ -79,6 +80,19 @@ CapsuleCollider:
   m_Height: 210.54909
   m_Direction: 1
   m_Center: {x: 0, y: 89.32728, z: 0}
+--- !u!114 &7202094101470782050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596538130000258835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80045e62265db44c9d73d9ae9d1924f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
 --- !u!1 &7979762790591969464
 GameObject:
   m_ObjectHideFlags: 0

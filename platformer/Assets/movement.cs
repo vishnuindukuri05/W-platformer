@@ -95,7 +95,13 @@ public class movement : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.name.ToLower().Contains("gas")){
             fuel = 10;
+            gameObject.transform.GetChild(7).gameObject.GetComponent<AudioSource>().Play(0);
             Destroy(other.gameObject);
+        }
+    }
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.name.ToLower().Contains("raj") || other.gameObject.name.ToLower().Contains("kim")){
+            fuel -= 2;
         }
     }
 }
