@@ -18,6 +18,7 @@ public class movement : MonoBehaviour
     int eff;
     float deadtimer;
     bool dead;
+    ArrayList checkpoints = new ArrayList();
     void Start()
     {
         fuel = 10;
@@ -97,7 +98,9 @@ public class movement : MonoBehaviour
                 deadtimer -= Time.fixedDeltaTime;
             }
             if (deadtimer <= 0){
-                dead = true;
+                if (checkpoints.Count >0){
+                    gameObject.transform.position = checkpoints[checkpoints.Count-1];
+                }
             }
     }
     private void OnGUI() {
@@ -109,6 +112,7 @@ public class movement : MonoBehaviour
             fuel = 10;
             gameObject.transform.GetChild(7).gameObject.GetComponent<AudioSource>().Play(0);
             Destroy(other.gameObject);
+            checkpoints.Add(other.gameObject.transform.position);
         }
         if (other.name.ToLower().Contains("wrench")){
             eff *= 2;
