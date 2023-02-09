@@ -15,6 +15,7 @@ public class movement : MonoBehaviour
     [SerializeField] Slider fuelbar;
     float boosttime;
     bool boosting;
+    int eff;
     void Start()
     {
         fuel = 10;
@@ -28,13 +29,14 @@ public class movement : MonoBehaviour
         this.gameObject.GetComponent<AudioSource>().Play(0);
         boosttime = 2;
         boosting = false;
+        eff = 1;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
             if(Input.GetKey(KeyCode.Space) && fuel >0){
-                fuel -= Time.fixedDeltaTime;
+                fuel -= Time.fixedDeltaTime/eff;
                 gameObject.GetComponent<Rigidbody>().AddForce(transform.forward/5, ForceMode.Impulse);
                 foraward.Play();
             }
@@ -98,10 +100,15 @@ public class movement : MonoBehaviour
             gameObject.transform.GetChild(7).gameObject.GetComponent<AudioSource>().Play(0);
             Destroy(other.gameObject);
         }
+        if (other.name.ToLower().Contains("wrench")){
+            eff *= 2;
+            Destroy(other.gameObject);
+        }
     }
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.name.ToLower().Contains("raj") || other.gameObject.name.ToLower().Contains("kim")){
             fuel -= 2;
+            other.gameObject.GetComponent<AudioSource>().Play();
         }
     }
 }
