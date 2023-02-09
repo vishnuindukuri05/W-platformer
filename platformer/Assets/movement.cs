@@ -16,6 +16,8 @@ public class movement : MonoBehaviour
     float boosttime;
     bool boosting;
     int eff;
+    float deadtimer;
+    bool dead;
     void Start()
     {
         fuel = 10;
@@ -30,6 +32,8 @@ public class movement : MonoBehaviour
         boosttime = 2;
         boosting = false;
         eff = 1;
+        deadtimer = 5;
+        dead = false;
     }
 
     // Update is called once per frame
@@ -89,6 +93,12 @@ public class movement : MonoBehaviour
                 boosttime = 2f;
             }
             fuelbar.value = fuel;
+            if (fuel <=0){
+                deadtimer -= Time.fixedDeltaTime;
+            }
+            if (deadtimer <= 0){
+                dead = true;
+            }
     }
     private void OnGUI() {
         GUI.Label(new Rect(175, 25, 500, 100), "Fuel left");
