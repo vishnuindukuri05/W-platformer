@@ -18,7 +18,8 @@ public class movement : MonoBehaviour
     int eff;
     float deadtimer;
     bool dead;
-    ArrayList checkpoints = new ArrayList();
+    Quaternion initial;
+    List<Vector3> checkpoints = new List<Vector3>();
     void Start()
     {
         fuel = 10;
@@ -33,8 +34,10 @@ public class movement : MonoBehaviour
         boosttime = 2;
         boosting = false;
         eff = 1;
-        deadtimer = 5;
+        deadtimer = 3;
         dead = false;
+        checkpoints.Add(gameObject.transform.position);
+        initial = gameObject.transform.rotation;
     }
 
     // Update is called once per frame
@@ -95,16 +98,26 @@ public class movement : MonoBehaviour
             }
             fuelbar.value = fuel;
             if (fuel <=0){
+                dead = true;
+            }
+            if (dead){
                 deadtimer -= Time.fixedDeltaTime;
             }
             if (deadtimer <= 0){
-                if (checkpoints.Count >0){
-                    //gameObject.transform.position = checkpoints[checkpoints.Count-1];
-                }
+                gameObject.transform.position = checkpoints[checkpoints.Count-1];
+                deadtimer = 3;
+                dead = false;
+                fuel = 10;
+                gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+                gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0,0,0);
+                gameObject.transform.rotation = initial;
             }
     }
     private void OnGUI() {
         GUI.Label(new Rect(175, 25, 500, 100), "Fuel left");
+        if (dead){
+            GUI.Label(new Rect(500, 100, 500, 100), "Respawn in: "+deadtimer);
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
