@@ -99,7 +99,7 @@ public class movement : MonoBehaviour
             }
             if (deadtimer <= 0){
                 if (checkpoints.Count >0){
-                    gameObject.transform.position = checkpoints[checkpoints.Count-1];
+                    //gameObject.transform.position = checkpoints[checkpoints.Count-1];
                 }
             }
     }
