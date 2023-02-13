@@ -137,5 +137,8 @@ public class movement : MonoBehaviour
             fuel -= 2;
             other.gameObject.GetComponent<AudioSource>().Play();
         }
+        if (other.gameObject.name.ToLower().Contains("capsule")){
+            dead = true;
+        }
     }
 }
