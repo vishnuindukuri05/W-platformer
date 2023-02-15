@@ -19,6 +19,8 @@ public class movement : MonoBehaviour
     float deadtimer;
     bool dead;
     Quaternion initial;
+    int fire;
+    bool portal;
     List<Vector3> checkpoints = new List<Vector3>();
     void Start()
     {
@@ -38,6 +40,8 @@ public class movement : MonoBehaviour
         dead = false;
         checkpoints.Add(gameObject.transform.position);
         initial = gameObject.transform.rotation;
+        fire = 0;
+        portal = false;
     }
 
     // Update is called once per frame
@@ -112,6 +116,9 @@ public class movement : MonoBehaviour
                 gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0,0,0);
                 gameObject.transform.rotation = initial;
             }
+            if (fire ==3){
+                portal = true; 
+            }
     }
     private void OnGUI() {
         GUI.Label(new Rect(175, 25, 500, 100), "Fuel left");
@@ -131,14 +138,18 @@ public class movement : MonoBehaviour
             eff *= 2;
             Destroy(other.gameObject);
         }
+        if (other.gameObject.name.ToLower().Contains("capsule")){
+            dead = true;
+        }
+        if (other.gameObject.name.ToLower().Contains("fire")){
+            fire++;
+            Destroy(other.gameObject);
+        }
     }
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.name.ToLower().Contains("raj") || other.gameObject.name.ToLower().Contains("kim")){
             fuel -= 2;
             other.gameObject.GetComponent<AudioSource>().Play();
-        }
-        if (other.gameObject.name.ToLower().Contains("capsule")){
-            dead = true;
         }
     }
 }
