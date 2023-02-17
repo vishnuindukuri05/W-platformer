@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class movement : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class movement : MonoBehaviour
     ParticleSystem foraward;
     ParticleSystem super;
     [SerializeField] Slider fuelbar;
+    public GameObject portal1;
     float boosttime;
     bool boosting;
     int eff;
@@ -41,7 +43,8 @@ public class movement : MonoBehaviour
         checkpoints.Add(gameObject.transform.position);
         initial = gameObject.transform.rotation;
         fire = 0;
-        portal = false;
+        portal1.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -56,7 +59,7 @@ public class movement : MonoBehaviour
                 foraward.Stop();
             }
             if (Input.GetKey(KeyCode.W) && fuel >0 ){
-                fuel -= Time.fixedDeltaTime;
+                fuel -= Time.fixedDeltaTime/eff;
                 gameObject.GetComponent<Rigidbody>().AddForce(-transform.up/5, ForceMode.Impulse);
                 up.Play();
             }
@@ -64,7 +67,7 @@ public class movement : MonoBehaviour
                 up.Stop();
             }
             if (Input.GetKey(KeyCode.A) && fuel >0){
-                fuel -= Time.fixedDeltaTime/2;
+                fuel -= Time.fixedDeltaTime/eff;
                 gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(0,-1,0));
                 right.Play();
             }
@@ -72,7 +75,7 @@ public class movement : MonoBehaviour
                 right.Stop();
             }
             if (Input.GetKey(KeyCode.D) && fuel >0){
-                fuel -= Time.fixedDeltaTime/2;
+                fuel -= Time.fixedDeltaTime/eff;
                 gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(0,1,0));
                 left.Play();
             }
@@ -88,7 +91,7 @@ public class movement : MonoBehaviour
                 this.gameObject.GetComponent<AudioSource>().Pause();
             }
             if (Input.GetKey(KeyCode.LeftShift) && fuel >=2.5 && !boosting){
-                fuel -= 2.5f;
+                fuel -= 2.5f/eff;
                 boosting = true;
             }
             if (boosting){
@@ -117,7 +120,7 @@ public class movement : MonoBehaviour
                 gameObject.transform.rotation = initial;
             }
             if (fire ==3){
-                portal = true; 
+                portal1.SetActive(true); 
             }
     }
     private void OnGUI() {
@@ -144,6 +147,9 @@ public class movement : MonoBehaviour
         if (other.gameObject.name.ToLower().Contains("fire")){
             fire++;
             Destroy(other.gameObject);
+        }
+        if (other.gameObject.name.ToLower().Contains("sphere")){
+            SceneManager.LoadScene("End Cutscene");
         }
     }
     private void OnCollisionEnter(Collision other) {
