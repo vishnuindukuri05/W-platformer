@@ -8,6 +8,7 @@ public class Transition : MonoBehaviour
     
     public Animator animator;
     public AudioSource audio;
+    public AudioSource audio2;
 
     private int levelToLoad;
     
@@ -31,6 +32,10 @@ public class Transition : MonoBehaviour
 
     public void playAudio() {
         audio.Play(0);
+    }
+
+    public void stopIntro() {
+        audio2.Pause();
     }
 
     public void FadeToLevel(int levelIndex) {
