@@ -33,7 +33,7 @@ public class movement : MonoBehaviour
         foraward = gameObject.transform.GetChild(5).gameObject.GetComponent<ParticleSystem>();
         super = gameObject.transform.GetChild(6).gameObject.GetComponent<ParticleSystem>();
         super.Stop();
-        Physics.gravity = new Vector3(0, -0.5f, 0);
+        Physics.gravity = new Vector3(0, -1, 0);
         this.gameObject.GetComponent<AudioSource>().Play(0);
         boosttime = 2;
         boosting = false;
