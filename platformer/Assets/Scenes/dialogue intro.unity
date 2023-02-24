@@ -245,11 +245,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 872108303}
   lines:
+  - '** Flashback **'
   - "\u201CEarth to Vishnu, get ready for your mission as you must bring back great
     research that will promote mankind to a higher realm\u201D"
   - "\u201Croger that, Vishnu out\u201D"
   - "\u201CI will be back\u201D (speaks to his (vishnu) family in his head)"
-  - "2 years later\u2026."
+  - "2 years later\u2026. to a bit before the crash"
   - "\u201CVishnu to earth, I will be heading back\""
   - "\u201Croger that vishnu, bring it home!\u201D"
   - ' BOOM BOOM BOOM CRASH CRASH KAW POW POW BAM *** The ship malfunctions and crashes
@@ -258,6 +259,8 @@ MonoBehaviour:
   - " \u201CI can\u2019t hear homebase, my communication device must be broken, but
     at least I know how to get back home\u201D "
   - Starts to head to earth by hopping through asteroids
+  - 
+  animator: {fileID: 1095796158}
   textSpeed: 0.009
 --- !u!114 &390369403
 MonoBehaviour:
@@ -545,6 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 0}
   lines: []
+  animator: {fileID: 0}
   textSpeed: 0
 --- !u!114 &872108303
 MonoBehaviour:
@@ -643,6 +647,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872108300}
   m_CullTransparentMesh: 1
+--- !u!1001 &1095796157
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 491075155492149766, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_Name
+      value: LevelChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 516.3259
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 273.8296
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1364615
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791578692419158610, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+--- !u!95 &1095796158 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2118916856527912085, guid: 7943ac143c5555c47b3fc7338e51991b, type: 3}
+  m_PrefabInstance: {fileID: 1095796157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1096963838
 GameObject:
   m_ObjectHideFlags: 0

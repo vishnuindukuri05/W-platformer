@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cut Scene Intro.unity
     guid: cbc7ac1bd3a2fc243820a409fc8a31d5
   - enabled: 1
+    path: Assets/Scenes/dialogue intro.unity
+    guid: 8ea7b033cb84b184891c9b76e838a70f
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
