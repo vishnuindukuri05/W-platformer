@@ -8,6 +8,7 @@ public class movement : MonoBehaviour
 {
     // Start is called before the first frame update
     float fuel;
+    float time;
     ParticleSystem left;
     ParticleSystem right;
     ParticleSystem up;
@@ -26,6 +27,7 @@ public class movement : MonoBehaviour
     List<Vector3> checkpoints = new List<Vector3>();
     void Start()
     {
+        time = 0;
         fuel = 10;
         left = gameObject.transform.GetChild(2).gameObject.GetComponent<ParticleSystem>();
         right = gameObject.transform.GetChild(3).gameObject.GetComponent<ParticleSystem>();
@@ -50,6 +52,7 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        time += Time.fixedDeltaTime;
             if(Input.GetKey(KeyCode.Space) && fuel >0){
                 fuel -= Time.fixedDeltaTime/eff;
                 gameObject.GetComponent<Rigidbody>().AddForce(transform.forward/5, ForceMode.Impulse);
@@ -125,6 +128,7 @@ public class movement : MonoBehaviour
     }
     private void OnGUI() {
         GUI.Label(new Rect(175, 25, 500, 100), "Fuel left");
+        GUI.Label(new Rect(900, 25, 500, 100), "Time:"+time);
         if (dead){
             GUI.Label(new Rect(500, 100, 500, 100), "Respawn in: "+deadtimer);
         }
