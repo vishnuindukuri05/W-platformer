@@ -30,6 +30,10 @@ public class Transition : MonoBehaviour
         FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void NextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void playAudio() {
         audio.Play(0);
     }
