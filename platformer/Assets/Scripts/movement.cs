@@ -153,6 +153,9 @@ public class movement : MonoBehaviour
             Destroy(other.gameObject);
         }
         if (other.gameObject.name.ToLower().Contains("sphere")){
+            if (time<PlayerPrefs.GetFloat("fastest")){
+                PlayerPrefs.SetFloat("fastest", time);
+            }
             SceneManager.LoadScene("End Cutscene");
         }
     }
