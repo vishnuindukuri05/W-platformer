@@ -1,33 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- using UnityEngine.UI;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class sett_ing : MonoBehaviour
 {
 
-    public Slider slider;
+    public AudioMixer audioMixer;
 
-    private int volume;
-    
-
-    // Start is called before the first frame update
-    // void Start()
-    // {
-    //     volume = GameObject.Find("Volume Slider").GetComponent<Slider>().value;
-    // }
-
-    public void OnValueChanged(float newValue)
+    public void SetVolume (float volume)
     {
-        Debug.Log(slider.value);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // volume = GameObject.Find("Volume Slider").GetComponent<Slider>().value;
         // Debug.Log(volume);
+        audioMixer.SetFloat("Volume", volume);
+        GameObject.Find("Main Camera").GetComponent<AudioSource>().volume = (volume + 80) * 0.01f;
     }
 
+    public void SetQuality (int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
 
+    public void SetFullscreen (bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+    }
 }
