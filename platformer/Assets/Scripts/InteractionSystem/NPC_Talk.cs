@@ -6,6 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 public class NPC_Talk : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
+    public AudioSource audio;
 
     private PostProcessVolume _postProcessVolume;
     private ColorGrading _cr;
@@ -28,6 +29,7 @@ public class NPC_Talk : MonoBehaviour, IInteractable
         // put command to do here (maybe trigger dialogue?)
         Debug.Log("Initiate Dialogue");
         on = true;
+        audio.Play(0);
         // GetComponent<scriptName>().triggerDialogue; or something like that
         return true;
     }
