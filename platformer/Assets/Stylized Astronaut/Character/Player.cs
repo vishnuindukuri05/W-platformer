@@ -30,16 +30,6 @@ public class Player : MonoBehaviour {
 			}  else {
 				anim.SetInteger ("AnimationPar", 0);
 			}
-			// if (Input.GetKey(KeyCode.Space)) {
-            //     controller.Move(new Vector3(0.0f, 20.0f, 0.0f) * Time.deltaTime);
-			// 	}
-			
-
-			// if(controller.isGrounded) {
-			// 	if (Input.GetKey(KeyCode.Space)) {
-            //     controller.Move(new Vector3(0.0f, 200.0f, 0.0f) * Time.deltaTime);
-			// 	}
-			// }
 
 			// if(controller.isGrounded){
 				moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
@@ -47,11 +37,8 @@ public class Player : MonoBehaviour {
 
 			float turn = Input.GetAxis("Horizontal");
 			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
-			moveDirection.y -= gravity * Time.deltaTime;
-			// if(!controller.isGrounded) {
-			// 	moveDirection.y -= 10f;
-			// }
-			// Debug.Log(moveDirection.y);
+			// moveDirection.y -= gravity * Time.deltaTime;
+
 			controller.Move(moveDirection * Time.deltaTime);
 		}
 
