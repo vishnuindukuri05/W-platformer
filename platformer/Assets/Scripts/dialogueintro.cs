@@ -23,7 +23,7 @@ public class dialogueintro : MonoBehaviour
 
     public void FadeToNextLevel()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void FadeToLevel(int levelIndex)
     {
